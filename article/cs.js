@@ -4,25 +4,30 @@
 */
 
 /*基础信息，引号里面都能改*/
-const title = "测试";  /*篇目名称，必填*/
-const writer = "LWW,Adpro";  /*篇目作者，必填*/
-const author = "Adpro";  /*代码作者*/
-const description = "测试";  /*描述*/
+var title = "测试";  /*篇目名称，必填*/
+var writer = "LWW,Adpro";  /*篇目作者，必填*/
+var author = "Adpro";  /*代码作者*/
+var description = "测试";  /*描述*/
 
 /*一个文言字词对应一个注释，请务必保持Q与A数量一致且一一对应，文字一定要用引号括起来*/
 /*为保证代码美观性和高可读性，推荐每一项之间换行*/
-const Q = [
-    "欧阳修的性别：",
-    "LWW性别：",
-    "你买东西用什么东西装？",
-    "什么东西长得像草鞋？",
-];  /*文言字词，不能为空*/
-const A = [
-    "男",
-    "女",
-    "沃尔玛购物袋",
-    "草履虫",
-];  /*注释，不得为空*/
+var Q = [];
+var A = [];
+function redefine_cs(){
+    Q = [
+        "欧阳修的性别：",
+        "LWW性别：",
+        "你买东西用什么东西装？",
+        "什么东西长得像草鞋？",
+    ];  /*问题，不能为空*/
+    A = [
+        "男",
+        "女",
+        "沃尔玛购物袋",
+        "草履虫",
+    ];  /*答案，问题、答案一一对应，不得为空*/
+    cs();
+};
 
 /*下面所有东西除特别说明外禁止改动！*/
 var getQue, ranPos;
@@ -49,7 +54,7 @@ function cs/*这里与文件名要相同*/(){
     document.getElementById("c3").textContent = cho[3];
 };
 
-function judge(button){
+function cs_judge(button){
     if(button == ranPos){
         alert("你的常识真好");
         cs()/*与文件名相同*/;
