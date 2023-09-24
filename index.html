@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+        <title>题海————用户可自定义题库的平台</title>
+    </head>
+    <body>
+        <div id="select">
+            <select id="choose">
+                <option value="yylj">岳阳楼记</option>
+            </select>
+        </div>
+        <div id="area">
+            <span id="q"></span>
+            <div id="a">
+                <button id="c0" type="button" onclick="judge(0);"></button>
+                <button id="c1" type="button" onclick="judge(1);"></button>
+                <button id="c2" type="button" onclick="judge(2);"></button>
+                <button id="c3" type="button" onclick="judge(3);"></button>
+            </div>
+        </div>
+        <script src="./src/listen.js"></script>
+        <script src="./article/yylj.js"></script>
+        <script>getArti();</script>
+    </body>
+</html>
