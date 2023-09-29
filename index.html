@@ -4,27 +4,32 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
         <title>题海——用户可自定义题库的平台</title>
+        <link rel="shortcut icon" href="./icon.ico">
+        <link rel="stylesheet" href="./css/button.css">
+        <link rel="stylesheet" href="./css/question.css">
     </head>
     <body>
+        <div id="info">
+            <span id="main">当前程序版本：Beta-0.1.0(6)</span><br>
+            <span id="lib"></span>
+        </div>
         <div id="select">
-            <span>选择题库</span>
+            <br><span>选择题库：</span>
             <select id="choose">
                 <option value="yylj">岳阳楼记</option>
-                <option value="cs">测试</option>
             </select>
         </div>
         <div id="area">
-            <span id="q"></span>
+            <span id="q" class="question"></span>
             <div id="a">
-                <button id="c0" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(0)');"></button>
-                <button id="c1" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(1)');"></button>
-                <button id="c2" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(2)');"></button>
-                <button id="c3" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(3)');"></button>
+                <button id="c0" class="btn btn1" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(0)');"></button>
+                <button id="c1" class="btn btn1" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(1)');"></button>
+                <button id="c2" class="btn btn1" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(2)');"></button>
+                <button id="c3" class="btn btn1" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(3)');"></button>
             </div>
         </div>
-        <script src="./article/yylj.js"></script>
-        <script src="./article/cs.js"></script>
+        <script src="./lib/yylj.js"></script>
         <script src="./src/listen.js"></script>
-        <script>getArti();</script>
+        <script>getLib();</script>
     </body>
 </html>

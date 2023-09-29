@@ -4,12 +4,12 @@ document.getElementById("choose").addEventListener("change",function(listen){
         var index = userSelect.selectedIndex;
         console.log("change");
         if(userSelect.options[index].value == "yylj") redefine_yylj();
-        else if(userSelect.options[index].value == "cs") redefine_cs();
+        //else if(userSelect.options[index].value == "cs") redefine_cs();
     };
 });
-function getArti(){
+function getLib(){
     var userSelect = document.getElementById("choose");
     var index = userSelect.selectedIndex;
     if(userSelect.options[index].value == "yylj") redefine_yylj();
-    else if(userSelect.options[index].value == "cs") redefine_cs();
+    //else if(userSelect.options[index].value == "cs") redefine_cs();
 };
