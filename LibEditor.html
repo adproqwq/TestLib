@@ -24,9 +24,45 @@
                 btn.insertBefore(inp,null);
                 i++;
             };
+            function readLib(){
+                var link = prompt("请输入题库分享链接");
+                link = decodeURI(link);
+                var readTitle, readVersion, readFileName, readAuthor, readDiscription, readCorrectAlert, readWrongAlert, readQ, readA, readI;
+                readTitle = link.slice(link.indexOf("?title=") + 7,link.indexOf("?author="));
+                readAuthor = link.slice(link.indexOf("?author=") + 8,link.indexOf("?version="));
+                readVersion = link.slice(link.indexOf("?version=") + 9,link.indexOf("?desc="));
+                readDiscription = link.slice(link.indexOf("?desc=") + 6,link.indexOf("?fileName="));
+                readQ = link.slice(link.indexOf("?q=") + 3,link.indexOf("?a="));
+                readA = link.slice(link.indexOf("?a=") + 3,link.indexOf("?i="));
+                readFileName = link.slice(link.indexOf("?fileName=") + 10,link.indexOf("?c="));
+                readCorrectAlert = link.slice(link.indexOf("?c=") + 3,link.indexOf("?w="));
+                readWrongAlert = link.slice(link.indexOf("?w=") + 3,link.indexOf("?q="));
+                readI = Number(link.slice(link.indexOf("?i=") + 3));
+                document.getElementById("title").value = readTitle;
+                document.getElementById("author").value = readAuthor;
+                document.getElementById("version").value = readVersion;
+                document.getElementById("description").value = readDiscription;
+                var reg = new RegExp("'","g");
+                readQ = readQ.replace(reg,"");readQ = readQ.substring(0,readQ.length - 1);readQ = readQ.split(",");
+                readA = readA.replace(reg,"");readA = readA.substring(0,readA.length - 1);readA = readA.split(",");
+                document.getElementById("Q1").value = readQ[0];
+                document.getElementById("A1").value = readA[0];
+                for(var j = 1;j <= readI - 1;j++){
+                    var br = document.createElement('br');
+                    var btn1 = document.getElementById('QA');
+                    btn1.insertBefore(br,null);
+                    add_Q();
+                    add_A();
+                    document.getElementById("Q" + String(j + 1)).value = readQ[j];
+                    document.getElementById("A" + String(j + 1)).value = readA[j];
+                }
+                document.getElementById("fileName").value = readFileName;
+                document.getElementById("correct").value = readCorrectAlert;
+                document.getElementById("wrong").value = readWrongAlert;
+            };
         </script>
         <div id="info">
-            <span id="main">当前编辑器版本：Beta-0.1.0(2)</span><br>
+            <span id="main">当前编辑器版本：Beta-0.1.2(4)</span><br>
         </div>
         <div id="editArea">
             <div>
@@ -54,7 +90,7 @@
             </div>
             <button id="addQA" onclick="var br = document.createElement('br');var btn = document.getElementById('QA');btn.insertBefore(br,null);add_Q();add_A();">添加输入框</button>
             <div>
-                <span>题库代号（不能有中文）：</span>
+                <span>题库代号（不能有数字）：</span>
                 <input type="text" id="fileName">
             </div>
             <div>
@@ -67,6 +103,8 @@
             </div>
             <script src="./src/generate.js"></script>
             <button id="submit" onclick="generate(i);">生成题库</button>
+            <button id="save" onclick="save();">保存题库</button>
+            <button id="read" onclick="readLib();">读取题库</button>
         </div>
     </body>
 </html>
