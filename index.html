@@ -36,8 +36,8 @@
             var flag = 0;
             if(uri.indexOf("=") != -1){
                 script = uri.slice(uri.indexOf("=") + 1,uri.indexOf("?title="));
-                getTitle = uri.slice(uri.indexOf("?title=") + 7,uri.indexOf("?version="));
-                getVersion = uri.slice(uri.indexOf("?version=") + 9,uri.indexOf("?fileName="));
+                getTitle = uri.slice(uri.indexOf("?title=") + 7,uri.indexOf("?author="));
+                getVersion = uri.slice(uri.indexOf("?version=") + 9,uri.indexOf("?desc="));
                 getFileName = uri.slice(uri.indexOf("?fileName=") + 10);
 
                 var opt = document.createElement('option');
