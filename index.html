@@ -38,7 +38,7 @@
                 script = uri.slice(uri.indexOf("=") + 1,uri.indexOf("?title="));
                 getTitle = uri.slice(uri.indexOf("?title=") + 7,uri.indexOf("?author="));
                 getVersion = uri.slice(uri.indexOf("?version=") + 9,uri.indexOf("?desc="));
-                getFileName = uri.slice(uri.indexOf("?fileName=") + 10);
+                getFileName = uri.slice(uri.indexOf("?fileName=") + 10,uri.indexOf("?c="));
 
                 var opt = document.createElement('option');
                 var btn = document.getElementById('choose');
