@@ -22,7 +22,8 @@ function generate(i){
     window.open(encodeURI('./index.html?' + 'json=' + json + '?title=' + getTitle + '?author=' + getAuthor + '?version=' + getVersion + '?desc=' + getDiscription + '?fileName=' + getFileName + '?c=' + getCorrectAlert + '?w=' + getWrongAlert + '?q=' + getQ + '?a=' + getA + '?i=' + String(i)));
 };
 function save(){
-    navigator.clipboard.writeText(json).then(() => {
+    console.log(json);
+    navigator.clipboard.writeText('https://testlib.adproqwq.xyz/index.html?json=' + json + '?title=' + getTitle + '?author=' + getAuthor + '?version=' + getVersion + '?desc=' + getDiscription + '?fileName=' + getFileName + '?c=' + getCorrectAlert + '?w=' + getWrongAlert + '?q=' + getQ + '?a=' + getA + '?i=' + String(i)).then(() => {
         alert('已复制到剪切板，分享题库时发送该链接即可。');
     });
 };
