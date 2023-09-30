@@ -10,7 +10,7 @@
     </head>
     <body>
         <div id="info">
-            <span id="main">当前程序版本：Beta-0.1.0(6)</span><br>
+            <span id="main">当前程序版本：Beta-0.2.0(7)</span><br>
             <span id="lib"></span>
         </div>
         <div id="select">
@@ -22,12 +22,33 @@
         <div id="area">
             <span id="q" class="question"></span>
             <div id="a">
-                <button id="c0" class="btn btn1" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(0)');"></button>
-                <button id="c1" class="btn btn1" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(1)');"></button>
-                <button id="c2" class="btn btn1" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(2)');"></button>
-                <button id="c3" class="btn btn1" type="button" onclick="var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';eval(funcName + '(3)');"></button>
+                <button id="c0" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(0)');else{eval(script);var getResult = eval(funcName + '(0,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
+                <button id="c1" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(1)');else{eval(script);var getResult = eval(funcName + '(1,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
+                <button id="c2" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(2)');else{eval(script);var getResult = eval(funcName + '(2,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
+                <button id="c3" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(3)');else{eval(script);var getResult = eval(funcName + '(3,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
             </div>
         </div>
+        <br>
+        <button id="editor" type="button" class="btn btn1" onclick="window.location.href = './LibEditor.html';">题库编辑器</button>
+        <script>
+            var uri = decodeURI(document.URL);
+            var script,getTitle, getVersion, getFileName;
+            var flag = 0;
+            if(uri.indexOf("=") != -1){
+                script = uri.slice(uri.indexOf("=") + 1,uri.indexOf("?title="));
+                getTitle = uri.slice(uri.indexOf("?title=") + 7,uri.indexOf("?version="));
+                getVersion = uri.slice(uri.indexOf("?version=") + 9,uri.indexOf("?fileName="));
+                getFileName = uri.slice(uri.indexOf("?fileName=") + 10);
+
+                var opt = document.createElement('option');
+                var btn = document.getElementById('choose');
+                opt.setAttribute('value',getFileName);
+                btn.insertBefore(opt,null);
+                opt.innerText = getTitle;
+
+                flag = 1;
+            }
+        </script>
         <script src="./lib/yylj.js"></script>
         <script src="./src/listen.js"></script>
         <script>getLib();</script>

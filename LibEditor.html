@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+        <title>题海题库编辑器</title>
+        <link rel="shortcut icon" href="./icon.ico">
+    </head>
+    <body>
+        <script>
+            var i = 1;
+            function add_Q(){
+                var inp = document.createElement('input');
+                var btn = document.getElementById('QA');
+                inp.setAttribute('type','text');
+                inp.setAttribute('id','Q' + String(i + 1));
+                btn.insertBefore(inp,null);
+            };
+            function add_A(){
+                var inp = document.createElement('input');
+                var btn = document.getElementById('QA');
+                inp.setAttribute('type','text');
+                inp.setAttribute('id','A' + String(i + 1));
+                btn.insertBefore(inp,null);
+                i++;
+            };
+        </script>
+        <div id="info">
+            <span id="main">当前编辑器版本：Beta-0.1.0(2)</span><br>
+        </div>
+        <div id="editArea">
+            <div>
+                <span>题库名称：</span>
+                <input type="text" id="title">
+            </div>
+            <div>
+                <span>代码作者：</span>
+                <input type="text" id="author">
+            </div>
+            <div>
+                <span>题库版本：</span>
+                <input type="text" id="version">
+            </div>
+            <div>
+                <span>描述：</span>
+                <input type="text" id="description">
+            </div>
+            <div id="QA">
+                <span>问题与答案（一组输入框对应一个问题和一个答案）：</span><br>
+                <span>问题：</span>
+                <span>答案：</span><br>
+                <input type="text" id="Q1">
+                <input type="text" id="A1">
+            </div>
+            <button id="addQA" onclick="var br = document.createElement('br');var btn = document.getElementById('QA');btn.insertBefore(br,null);add_Q();add_A();">添加输入框</button>
+            <div>
+                <span>题库代号（不能有中文）：</span>
+                <input type="text" id="fileName">
+            </div>
+            <div>
+                <span>正确提示：</span>
+                <input type="text" id="correct">
+            </div>
+            <div>
+                <span>错误提示：</span>
+                <input type="text" id="wrong">
+            </div>
+            <script src="./src/generate.js"></script>
+            <button id="submit" onclick="generate(i);">生成题库</button>
+        </div>
+    </body>
+</html>
