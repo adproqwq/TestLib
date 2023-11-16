@@ -77,7 +77,7 @@
             };
         </script>
         <div id="info">
-            <span id="main">当前编辑器版本：Beta-0.1.4(6)</span><br>
+            <span id="main">当前编辑器版本：Beta-0.1.5(7)</span><br>
         </div>
         <div id="editArea">
             <div>
@@ -133,6 +133,18 @@
             <button id="test" onclick="test(i);">调试题库</button>
             <button id="save" onclick="save();">保存题库</button>
             <button id="read" onclick="readLib();">读取题库</button>
+        </div>
+        <div id="example">
+            <span>
+                <br><br>
+                你可以在“正确提示”和“错误提示”里使用JS代码。<br>
+                “正确提示”和“错误提示”使用的是alert，其一般用法为：alert("") “正确提示”和“错误提示”分别放在两个alert语句的双引号内。<br>
+                也就意味着：只要处理好()和""的问题，就可以向其插入JS代码。<br>
+                下面是实例：<br>
+                在“正确提示”中填入：接下来要传送了！请坐稳扶好！");window.open("baidu.com<br>
+                其实际等效于：alert("接下来要传送了！请坐稳扶好！");window.open("baidu.com");<br>
+                “错误提示”同理。
+            </span>
         </div>
     </body>
 </html>
