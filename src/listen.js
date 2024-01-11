@@ -13,7 +13,3 @@ function getLib(){
         readFile(userSelect.options[index].value);
     },500);
 };
-function resume(){
-    eval(script);
-    getRanPos = eval("redefine_" + getFileName + "();");
-};

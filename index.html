@@ -21,15 +21,10 @@
         </div>
         <div id="area">
             <span id="q" class="question"></span>
-            <div id="a">
-                <button id="c0" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(0)');else{eval(script);var getResult = eval(funcName + '(0,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
-                <button id="c1" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(1)');else{eval(script);var getResult = eval(funcName + '(1,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
-                <button id="c2" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(2)');else{eval(script);var getResult = eval(funcName + '(2,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
-                <button id="c3" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(3)');else{eval(script);var getResult = eval(funcName + '(3,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
-            </div>
+            <div id="a"></div>
         </div>
         <br>
-        <button id="editor" type="button" class="btn btn1" onclick="window.location.href = './LibEditor.html';">题库编辑器</button>
+        <button id="editor" type="button" class="btn btn1" onclick="window.location.href = './LibEditor.html';">题库编辑器（尚未重构）</button>
         <script src="https://cdn.bootcdn.net/ajax/libs/json5/2.2.3/index.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.6.5/dist/axios.min.js"></script>
         <script src="./src/index.js"></script>
