@@ -9,7 +9,9 @@ document.getElementById("choose").addEventListener("change",function(listen){
 function getLib(){
     let userSelect = document.getElementById("choose");
     let index = userSelect.selectedIndex;
-    readFile(userSelect.options[index].value);
+    setTimeout(()=>{
+        readFile(userSelect.options[index].value);
+    },500);
 };
 function resume(){
     eval(script);

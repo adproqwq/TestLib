@@ -7,6 +7,6 @@ axios.get('../lib/yylj-offical.json5').then(function(data){
 
 function readFile(libName){
   let libIndex = libList.indexOf(libName);
-  let data = JSON5.parse(libData[libIndex]);
-  document.getElementById('lib').innerText = '当前题库版本：' + data.versionName;
+  let script = JSON5.parse(JSON5.parse(libData[libIndex]));
+  document.getElementById('lib').innerText = '当前题库版本：' + script.versionName;
 };
