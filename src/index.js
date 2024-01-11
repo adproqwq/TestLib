@@ -16,8 +16,7 @@ function getJsonArrayLength(jsonArray){
 function getQuestion(data){
   let chioceArea = document.getElementById('a');
   let dataLength = getJsonArrayLength(data.data);
-  let randomQ = Math.round(Math.random()*dataLength);
-  console.log(randomQ);
+  let randomQ = Math.floor(Math.random()*dataLength);
   document.getElementById('q').innerText = data.data[randomQ].Q;
   let length = getJsonArrayLength(data.data[randomQ].choice);
   let randomPosition = Math.round(Math.random()*length);
