@@ -73,15 +73,50 @@ function importLib(){
   const reader = new FileReader();
   reader.readAsText(libFile[0],'UTF-8');
   reader.onload = function(e){
-      let data = e.target.result;
+    let data = e.target.result;
+    let jsonData = JSON5.parse(data);
+    let libIndex = libList.indexOf(jsonData.libName);
+    if(libIndex == -1){
       libData.push(data);
-      data = JSON5.parse(data);
-      libList.push(data.libName);
+      libList.push(jsonData.libName);
       let selection = document.getElementById('choose');
       let optionTag = document.createElement('option');
-      optionTag.setAttribute('value',data.libName);
-      optionTag.setAttribute('label',data.name);
+      optionTag.setAttribute('value',jsonData.libName);
+      optionTag.setAttribute('label',jsonData.name);
       selection.appendChild(optionTag);
       alert('导入成功！');
+    }
+    else{
+      let oldData = JSON5.parse(libData[libIndex]);
+      let userSelect = document.getElementById("choose");
+      let index = userSelect.selectedIndex;
+      if(jsonData.versionCode > oldData.versionCode){
+        libData[libIndex] = data;
+        alert('导入成功！已覆盖旧版本');
+        let chioceArea = document.getElementById('a');
+        let childs = chioceArea.childNodes;
+        for(let i = childs.length - 1; i >= 0; i--){
+          chioceArea.removeChild(childs[i]);
+        }
+        if(userSelect.options[index].value == jsonData.libName){
+          document.getElementById('lib').innerText = `当前题库版本：${jsonData.versionName}(${jsonData.versionCode})`;
+          getQuestion(jsonData);
+        }
+      }
+      else if(jsonData.versionCode < oldData.versionCode) alert('导入失败！你已安装高版本');
+      else{
+        libData[libIndex] = data;
+        alert('导入成功！已重新导入该题库');
+        let chioceArea = document.getElementById('a');
+        let childs = chioceArea.childNodes;
+        for(let i = childs.length - 1; i >= 0; i--){
+          chioceArea.removeChild(childs[i]);
+        }
+        if(userSelect.options[index].value == jsonData.libName){
+          document.getElementById('lib').innerText = `当前题库版本：${jsonData.versionName}(${jsonData.versionCode})`;
+          getQuestion(jsonData);
+        }
+      }
+    }
   };
 };
