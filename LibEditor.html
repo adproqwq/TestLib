@@ -7,118 +7,36 @@
         <link rel="shortcut icon" href="./icon.ico">
     </head>
     <body>
-        <script>
-            var i = 4;
-            function add_Q(){
-                var inp = document.createElement('input');
-                var btn = document.getElementById('QA');
-                inp.setAttribute('type','text');
-                inp.setAttribute('id','Q' + String(i + 1));
-                btn.insertBefore(inp,null);
-            };
-            function add_A(){
-                var inp = document.createElement('input');
-                var btn = document.getElementById('QA');
-                inp.setAttribute('type','text');
-                inp.setAttribute('id','A' + String(i + 1));
-                btn.insertBefore(inp,null);
-                i++;
-            };
-            function readLib(){
-                var link = prompt("请输入题库分享链接");
-                link = decodeURI(link);
-                var readTitle, readVersion, readFileName, readAuthor, readDiscription, readCorrectAlert, readWrongAlert, readQ, readA, readI;
-                readTitle = link.slice(link.indexOf("?title=") + 7,link.indexOf("?author="));
-                readAuthor = link.slice(link.indexOf("?author=") + 8,link.indexOf("?version="));
-                readVersion = link.slice(link.indexOf("?version=") + 9,link.indexOf("?desc="));
-                readDiscription = link.slice(link.indexOf("?desc=") + 6,link.indexOf("?fileName="));
-                readQ = link.slice(link.indexOf("?q=") + 3,link.indexOf("?a="));
-                readA = link.slice(link.indexOf("?a=") + 3,link.indexOf("?i="));
-                readFileName = link.slice(link.indexOf("?fileName=") + 10,link.indexOf("?c="));
-                readCorrectAlert = link.slice(link.indexOf("?c=") + 3,link.indexOf("?w="));
-                readWrongAlert = link.slice(link.indexOf("?w=") + 3,link.indexOf("?q="));
-                readI = Number(link.slice(link.indexOf("?i=") + 3));
-                document.getElementById("title").value = readTitle;
-                document.getElementById("author").value = readAuthor;
-                document.getElementById("version").value = readVersion;
-                document.getElementById("description").value = readDiscription;
-                var reg = new RegExp("'","g");
-                readQ = readQ.replace(reg,"");readQ = readQ.substring(0,readQ.length - 1);readQ = readQ.split(",");
-                readA = readA.replace(reg,"");readA = readA.substring(0,readA.length - 1);readA = readA.split(",");
-                document.getElementById("Q1").value = readQ[0];
-                document.getElementById("A1").value = readA[0];
-                document.getElementById("Q2").value = readQ[1];
-                document.getElementById("A2").value = readA[1];
-                document.getElementById("Q3").value = readQ[2];
-                document.getElementById("A3").value = readA[2];
-                document.getElementById("Q4").value = readQ[3];
-                document.getElementById("A4").value = readA[3];
-                for(var j = 4;j <= readI - 1;j++){
-                    var span1 = document.createElement('span');
-                    var span2 = document.createElement('span');
-                    span1.appendChild(document.createTextNode('问题' + String(j + 1) + '：'));
-                    span2.appendChild(document.createTextNode('答案' + String(j + 1) + '：'));
-                    var text = document.getElementById('QA');
-                    text.appendChild(span1);
-                    add_Q();
-                    var br1 = document.createElement('br');
-                    var br2 = document.createElement('br');
-                    var btn = document.getElementById('QA');
-                    btn.insertBefore(br1,null);
-                    text.appendChild(span2);
-                    add_A();
-                    btn.insertBefore(br2,null);
-                    document.getElementById("Q" + String(j + 1)).value = readQ[j];
-                    document.getElementById("A" + String(j + 1)).value = readA[j];
-                }
-                document.getElementById("fileName").value = readFileName;
-                document.getElementById("correct").value = readCorrectAlert;
-                document.getElementById("wrong").value = readWrongAlert;
-            };
-        </script>
         <div id="info">
-            <span id="main">当前编辑器版本：Beta-0.1.5(7)</span><br>
+            <span id="main">当前编辑器版本：Insider-0.1.0(1)</span><br>
         </div>
         <div id="editArea">
             <div>
                 <span>题库名称：</span>
-                <input type="text" id="title">
+                <input type="text" id="name">
+            </div>
+            <div>
+                <span>题库代号：</span>
+                <input type="text" id="libName">
             </div>
             <div>
                 <span>代码作者：</span>
                 <input type="text" id="author">
             </div>
             <div>
-                <span>题库版本：</span>
-                <input type="text" id="version">
+                <span>题库描述：</span>
+                <input type="text" id="desc" placeholder="可以为空">
             </div>
             <div>
-                <span>描述：</span>
-                <input type="text" id="description">
+                <span>题库版本名：</span>
+                <input type="text" id="versionName" placeholder="可以随便取">
             </div>
-            <div id="QA">
-                <span>问题与答案（一组输入框对应一个问题和一个答案）：</span><br>
-                <span>问题1：</span>
-                <input type="text" id="Q1"><br>
-                <span>答案1：</span>
-                <input type="text" id="A1"><br>
-                <span>问题2：</span>
-                <input type="text" id="Q2"><br>
-                <span>答案2：</span>
-                <input type="text" id="A2"><br>
-                <span>问题3：</span>
-                <input type="text" id="Q3"><br>
-                <span>答案3：</span>
-                <input type="text" id="A3"><br>
-                <span>问题4：</span>
-                <input type="text" id="Q4"><br>
-                <span>答案4：</span>
-                <input type="text" id="A4"><br>
-            </div>
-            <button id="addQA" onclick="var span1 = document.createElement('span');var span2 = document.createElement('span');span1.appendChild(document.createTextNode('问题' + String(i + 1) + '：'));span2.appendChild(document.createTextNode('答案' + String(i + 1) + '：'));var text = document.getElementById('QA');text.appendChild(span1);add_Q();var br1 = document.createElement('br');var br2 = document.createElement('br');var btn = document.getElementById('QA');btn.insertBefore(br1,null);text.appendChild(span2);add_A();btn.insertBefore(br2,null);">添加输入框</button>
             <div>
-                <span>题库代号（不能有数字）：</span>
-                <input type="text" id="fileName">
+                <span>题库版本号：</span>
+                <input type="text" id="versionCode" placeholder="更新时版本号大的会覆盖小的">
+            </div>
+            <div>
+                <textarea id="data" cols="50" rows="5" placeholder="问题,正确答案,选项1[,选项2,选项3...]&#10;正确答案不需要包含在选项中，选项可以添加多个，但至少要有1个&#10;换行以添加多个问题"></textarea>
             </div>
             <div>
                 <span>正确提示：</span>
@@ -128,23 +46,13 @@
                 <span>错误提示：</span>
                 <input type="text" id="wrong">
             </div>
+            <script src="https://cdn.bootcdn.net/ajax/libs/json5/2.2.3/index.min.js"></script>
             <script src="./src/generate.js"></script>
-            <button id="submit" onclick="generate(i);">生成题库</button>
-            <button id="test" onclick="test(i);">调试题库</button>
-            <button id="save" onclick="save();">保存题库</button>
-            <button id="read" onclick="readLib();">读取题库</button>
-        </div>
-        <div id="example">
-            <span>
-                <br><br>
-                你可以在“正确提示”和“错误提示”里使用JS代码。<br>
-                “正确提示”和“错误提示”使用的是alert，其一般用法为：alert("") “正确提示”和“错误提示”分别放在两个alert语句的双引号内。<br>
-                也就意味着：只要处理好()和""的问题，就可以向其插入JS代码。<br>
-                下面是实例：<br>
-                在“正确提示”中填入：接下来要传送了！请坐稳扶好！");window.open("baidu.com<br>
-                其实际等效于：alert("接下来要传送了！请坐稳扶好！");window.open("baidu.com");<br>
-                “错误提示”同理。
-            </span>
+            <button id="submit" onclick="generate();">生成题库</button>
+            <div>
+                <span>读取题库：</span>
+                <input id="upload" type="file" accept=".json5" onchange="readLib();">
+            </div>
         </div>
     </body>
 </html>
