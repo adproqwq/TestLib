@@ -10,63 +10,24 @@
     </head>
     <body>
         <div id="info">
-            <span id="main">当前程序版本：Beta-0.2.4(11)</span><br>
+            <span id="main">当前程序版本：1.0.0(12)</span><br>
             <span id="lib"></span>
         </div>
         <div id="select">
             <br><span>选择题库：</span>
             <select id="choose">
-                <option value="yylj">岳阳楼记</option>
+                <option value="yylj-offical" label="岳阳楼记"></option>
             </select>
+            <input id="import" type="file" accept=".json5" onchange="importLib();">
         </div>
         <div id="area">
             <span id="q" class="question"></span>
-            <div id="a">
-                <button id="c0" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(0)');else{eval(script);var getResult = eval(funcName + '(0,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
-                <button id="c1" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(1)');else{eval(script);var getResult = eval(funcName + '(1,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
-                <button id="c2" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(2)');else{eval(script);var getResult = eval(funcName + '(2,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
-                <button id="c3" class="btn btn1" type="button" onclick="console.log('111:' + String(getRanPos));var userSelect = document.getElementById('choose');var index = userSelect.selectedIndex;var funcName = userSelect.options[index].value + '_judge';if(flag == 0)eval(funcName + '(3)');else{eval(script);var getResult = eval(funcName + '(3,' + String(getRanPos) + ')');if(getResult == 'correct')resume();}"></button>
-            </div>
+            <div id="a"></div>
         </div>
         <br>
-        <button id="editor" type="button" class="btn btn1" onclick="window.location.href = './LibEditor.html';">题库编辑器</button>
-        <script>
-            var uri = decodeURI(document.URL);
-            var script;
-            var getTitle, getVersion, getFileName, getAuthor, getDiscription, getCorrectAlert, getWrongAlert, getQ, getA, getI;
-            var flag = 0;
-            if(uri.indexOf("=") != -1){
-                getTitle = uri.slice(uri.indexOf("?title=") + 7,uri.indexOf("?author="));
-                getAuthor = uri.slice(uri.indexOf("?author=") + 8,uri.indexOf("?version="));
-                getVersion = uri.slice(uri.indexOf("?version=") + 9,uri.indexOf("?desc="));
-                getDiscription = uri.slice(uri.indexOf("?desc=") + 6,uri.indexOf("?fileName="));
-                getFileName = uri.slice(uri.indexOf("?fileName=") + 10,uri.indexOf("?c="));
-                getCorrectAlert = uri.slice(uri.indexOf("?c=") + 3,uri.indexOf("?w="));
-                getWrongAlert = uri.slice(uri.indexOf("?w=") + 3,uri.indexOf("?q="));
-                getQ = uri.slice(uri.indexOf("?q=") + 3,uri.indexOf("?a="));
-                getA = uri.slice(uri.indexOf("?a=") + 3,uri.indexOf("?i="));
-                getI = uri.slice(uri.indexOf("?i=") + 3);
-                script = `var title = "${getTitle}";var author = "${getAuthor}";var version = "${getVersion}";var description = "${getDiscription}";var Q = [];var A = [];function redefine_${getFileName}(){Q = [${getQ}];A = [${getA}];return ${getFileName}();};var getQue, ranPos;var cho = [];var backup = [];function ${getFileName}(){getQue = Math.floor(Math.random()*Q.length);cho = [];backup = [...A];for(var i = 0;i < 4;i++){var getRanNum = Math.floor(Math.random()*backup.length);cho[i] = backup[getRanNum];backup.splice(getRanNum,1);}if(cho.lastIndexOf(A[getQue]) == -1){ranPos = Math.floor(Math.random()*4);cho[ranPos] = A[getQue];}else ranPos = cho.lastIndexOf(A[getQue]);if(version == "") document.getElementById("lib").innerHTML = "当前题库版本：1.0.0";else document.getElementById("lib").innerHTML = "当前题库版本：" + version;document.getElementById("q").innerHTML = Q[getQue];document.getElementById("c0").textContent = cho[0];document.getElementById("c1").textContent = cho[1];document.getElementById("c2").textContent = cho[2];document.getElementById("c3").textContent = cho[3];return ranPos;};function ${getFileName}_judge(button,ranPos){if(button == ranPos){alert("${getCorrectAlert}");return "correct";}else alert("${getWrongAlert}");};`;
-
-                var opt = document.createElement('option');
-                var btn = document.getElementById('choose');
-                opt.setAttribute('value',getFileName);
-                btn.insertBefore(opt,null);
-                opt.innerText = getTitle;
-
-                flag = 1;
-            }
-        </script>
-        <div id="download">
-            <br><h2>下载</h2><br>
-            <button type="button" id="win" class="btn btn1" onclick="window.open('https\://www.123pan.com/s/NIhZVv-CHUW3.html');">点击下载Windows版</button>
-        </div>
-        <div id="insider">
-            <br><h2>重构版本预览</h2><br>
-            <a href="https://insidertestlib.adproqwq.xyz">点此前往</a>
-            <span>重构版本功能不完善、不生效是正常情况。日常使用请使用当前版本</span>
-        </div>
-        <script src="./lib/yylj.js"></script>
+        <button id="editor" type="button" class="btn btn1" onclick="window.open('./LibEditor.html');">题库编辑器</button>
+        <script src="https://cdn.bootcdn.net/ajax/libs/json5/2.2.3/index.min.js"></script>
+        <script src="./src/index.js"></script>
         <script src="./src/listen.js"></script>
         <script>getLib();</script>
     </body>
