@@ -1,8 +1,12 @@
 var libList = ['yylj-offical'];
 var libData = [];
-axios.get('../lib/yylj-offical.json5').then(function(data){
-  data = JSON5.stringify(data.data);
-  libData.push(data);
+fetch('../lib/yylj-offical.json5').then(data=>data.blob()).then(blob=>{
+  const initReader = new FileReader();
+  initReader.readAsText(blob,'UTF-8');
+  initReader.onload = function(e){
+    let script = e.target.result;
+    libData.push(script);
+  };
 });
 
 function getJsonArrayLength(jsonArray){
@@ -39,14 +43,14 @@ function getQuestion(data){
 
 function readFile(libName){
   let libIndex = libList.indexOf(libName);
-  let data = JSON5.parse(JSON5.parse(libData[libIndex]));
+  let data = JSON5.parse(libData[libIndex]);
   document.getElementById('lib').innerText = `当前题库版本：${data.versionName}(${data.versionCode})`;
   getQuestion(data);
 };
 
 function judge(libName, correctAnswerLocation, index){
   let libIndex = libList.indexOf(libName);
-  let data = JSON5.parse(JSON5.parse(libData[libIndex]));
+  let data = JSON5.parse(libData[libIndex]);
   if(index == correctAnswerLocation){
     alert(data.prompt.correct);
     let chioceArea = document.getElementById('a');
@@ -57,4 +61,27 @@ function judge(libName, correctAnswerLocation, index){
     getQuestion(data);
   }
   else alert(data.prompt.wrong);
+};
+
+function importLib(){
+  const objFile = document.getElementById('import');
+  if(objFile.value === ''){
+      alert('请选择题库文件');
+      return
+  }
+  const libFile = objFile.files;
+  const reader = new FileReader();
+  reader.readAsText(libFile[0],'UTF-8');
+  reader.onload = function(e){
+      let data = e.target.result;
+      libData.push(data);
+      data = JSON5.parse(data);
+      libList.push(data.libName);
+      let selection = document.getElementById('choose');
+      let optionTag = document.createElement('option');
+      optionTag.setAttribute('value',data.libName);
+      optionTag.setAttribute('label',data.name);
+      selection.appendChild(optionTag);
+      alert('导入成功！');
+  };
 };
